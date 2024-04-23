@@ -1,5 +1,10 @@
+--
+--  Copyright (C) 2024, Vadim Godunko <vgodunko@gmail.com>
+--
+--  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+--
 
---  pragma Restrictions (No_Elaboration_Code);
+pragma Restrictions (No_Elaboration_Code);
 
 pragma Ada_2022;
 
@@ -9,9 +14,9 @@ with A0B.ARMv7M.NVIC_Utilities;     use A0B.ARMv7M.NVIC_Utilities;
 with A0B.SVD.ATSAM3X8E.PMC;         use A0B.SVD.ATSAM3X8E.PMC;
 with A0B.SVD.ATSAM3X8E.PIO;         use A0B.SVD.ATSAM3X8E.PIO;
 with A0B.Types.GCC_Builtins;        use A0B.Types.GCC_Builtins;
-with A0B.ATSAM3X8E_PIO.Controllers;  --  use A0B.ATSAM3X8E_PIO.Controllers;
+with A0B.ATSAM3X8E.PIO.Controllers;  --  use A0B.ATSAM3X8E.PIO.Controllers;
 
-package body A0B.ATSAM3X8E_PIO is
+package body A0B.ATSAM3X8E.PIO is
 
    procedure PIOA_Handler
      with Export, Convention => C, External_Name => "PIOA_Handler";
@@ -24,6 +29,8 @@ package body A0B.ATSAM3X8E_PIO is
 
    procedure PIOD_Handler
      with Export, Convention => C, External_Name => "PIOD_Handler";
+
+   procedure PIO_Handler (Self : in out ATSAM3X8E_PIO_Controller'Class);
 
    procedure Enable_Clock (Self : in out ATSAM3X8E_PIO_Controller);
 
@@ -505,4 +512,4 @@ package body A0B.ATSAM3X8E_PIO is
       return Self.SO'Access;
    end Suspension_Object;
 
-end A0B.ATSAM3X8E_PIO;
+end A0B.ATSAM3X8E.PIO;

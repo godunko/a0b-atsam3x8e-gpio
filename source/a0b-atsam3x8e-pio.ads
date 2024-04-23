@@ -1,3 +1,8 @@
+--
+--  Copyright (C) 2024, Vadim Godunko <vgodunko@gmail.com>
+--
+--  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+--
 
 pragma Restrictions (No_Elaboration_Code);
 
@@ -12,7 +17,7 @@ with A0B.Types;
 
 with A0B.SVD.ATSAM3X8E.PIO;
 
-package A0B.ATSAM3X8E_PIO
+package A0B.ATSAM3X8E.PIO
   with Preelaborate
 is
 
@@ -37,14 +42,6 @@ is
       Pullup     : Boolean := False) is abstract;
 
    type ATSAM3X8E_PIO_Controller is tagged;
-
-   type ATSAM3X8E_Peripheral_Identifier is range 0 .. 44;
-   --  Peripheral identifier, value is equal to NVIC interrupt number.
-
-   Parallel_IO_Controller_A : constant ATSAM3X8E_Peripheral_Identifier := 11;
-   Parallel_IO_Controller_B : constant ATSAM3X8E_Peripheral_Identifier := 12;
-   Parallel_IO_Controller_C : constant ATSAM3X8E_Peripheral_Identifier := 13;
-   Parallel_IO_Controller_D : constant ATSAM3X8E_Peripheral_Identifier := 14;
 
    type Input_Filter is (None, Glitch, Debouncing);
 
@@ -141,4 +138,4 @@ is
       Div  : A0B.Types.Unsigned_14);
    --  Configure Slow Clock Divider for Debouncing.
 
-end A0B.ATSAM3X8E_PIO;
+end A0B.ATSAM3X8E.PIO;

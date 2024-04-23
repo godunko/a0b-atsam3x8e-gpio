@@ -8,13 +8,13 @@
 
 pragma Ada_2022;
 
-with A0B.ATSAM3X8E_PIO.Controllers;
+with A0B.ATSAM3X8E.PIO.Controllers;
 
 package A0B.ATSAM3X8E.PB19_Line
   with Preelaborate
 is
 
-   PB19 : aliased A0B.ATSAM3X8E_PIO.ATSAM3X8E_Pin
-     (Controller => A0B.ATSAM3X8E_PIO.Controllers.PIOB'Access, Line => 19);
+   PB19 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+     (Controller => A0B.ATSAM3X8E.PIO.Controllers.PIOB'Access, Line => 19);
 
 end A0B.ATSAM3X8E.PB19_Line;
