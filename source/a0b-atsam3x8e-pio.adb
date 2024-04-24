@@ -18,9 +18,6 @@ with A0B.ATSAM3X8E.PIO.Controllers;  --  use A0B.ATSAM3X8E.PIO.Controllers;
 
 package body A0B.ATSAM3X8E.PIO is
 
-   procedure PIOB_Handler
-     with Export, Convention => C, External_Name => "PIOB_Handler";
-
    procedure PIOC_Handler
      with Export, Convention => C, External_Name => "PIOC_Handler";
 
@@ -431,15 +428,6 @@ package body A0B.ATSAM3X8E.PIO is
          A0B.Callbacks.Emit (Self.Line (ATSAM3X8E_PIO_Line (Line)).CB);
       end loop;
    end PIO_Handler;
-
-   ------------------
-   -- PIOB_Handler --
-   ------------------
-
-   procedure PIOB_Handler is
-   begin
-      PIO_Handler (Controllers.PIOB);
-   end PIOB_Handler;
 
    ------------------
    -- PIOC_Handler --
