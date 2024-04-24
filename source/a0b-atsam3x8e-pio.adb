@@ -8,18 +8,12 @@ pragma Restrictions (No_Elaboration_Code);
 
 pragma Ada_2022;
 
---  with Ada.Unchecked_Conversion;
-
 with A0B.ARMv7M.NVIC_Utilities;     use A0B.ARMv7M.NVIC_Utilities;
 with A0B.SVD.ATSAM3X8E.PMC;         use A0B.SVD.ATSAM3X8E.PMC;
 with A0B.SVD.ATSAM3X8E.PIO;         use A0B.SVD.ATSAM3X8E.PIO;
 with A0B.Types.GCC_Builtins;        use A0B.Types.GCC_Builtins;
-with A0B.ATSAM3X8E.PIO.Controllers;  --  use A0B.ATSAM3X8E.PIO.Controllers;
 
 package body A0B.ATSAM3X8E.PIO is
-
-   procedure PIOD_Handler
-     with Export, Convention => C, External_Name => "PIOD_Handler";
 
    procedure Enable_Clock (Self : in out ATSAM3X8E_PIO_Controller);
 
@@ -425,15 +419,6 @@ package body A0B.ATSAM3X8E.PIO is
          A0B.Callbacks.Emit (Self.Line (ATSAM3X8E_PIO_Line (Line)).CB);
       end loop;
    end PIO_Handler;
-
-   ------------------
-   -- PIOD_Handler --
-   ------------------
-
-   procedure PIOD_Handler is
-   begin
-      PIO_Handler (Controllers.PIOD);
-   end PIOD_Handler;
 
    ---------
    -- Set --
