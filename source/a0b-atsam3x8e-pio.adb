@@ -18,9 +18,6 @@ with A0B.ATSAM3X8E.PIO.Controllers;  --  use A0B.ATSAM3X8E.PIO.Controllers;
 
 package body A0B.ATSAM3X8E.PIO is
 
-   procedure PIOA_Handler
-     with Export, Convention => C, External_Name => "PIOA_Handler";
-
    procedure PIOB_Handler
      with Export, Convention => C, External_Name => "PIOB_Handler";
 
@@ -29,8 +26,6 @@ package body A0B.ATSAM3X8E.PIO is
 
    procedure PIOD_Handler
      with Export, Convention => C, External_Name => "PIOD_Handler";
-
-   procedure PIO_Handler (Self : in out ATSAM3X8E_PIO_Controller'Class);
 
    procedure Enable_Clock (Self : in out ATSAM3X8E_PIO_Controller);
 
@@ -436,15 +431,6 @@ package body A0B.ATSAM3X8E.PIO is
          A0B.Callbacks.Emit (Self.Line (ATSAM3X8E_PIO_Line (Line)).CB);
       end loop;
    end PIO_Handler;
-
-   ------------------
-   -- PIOA_Handler --
-   ------------------
-
-   procedure PIOA_Handler is
-   begin
-      PIO_Handler (Controllers.PIOA);
-   end PIOA_Handler;
 
    ------------------
    -- PIOB_Handler --

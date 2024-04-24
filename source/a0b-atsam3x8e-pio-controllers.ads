@@ -12,8 +12,6 @@ package A0B.ATSAM3X8E.PIO.Controllers
   with Preelaborate
 is
 
-   PIOA : aliased ATSAM3X8E_PIO_Controller
-     (A0B.SVD.ATSAM3X8E.PIO.PIOA_Periph'Access, Parallel_IO_Controller_A);
    PIOB : aliased ATSAM3X8E_PIO_Controller
      (A0B.SVD.ATSAM3X8E.PIO.PIOB_Periph'Access, Parallel_IO_Controller_B);
    PIOC : aliased ATSAM3X8E_PIO_Controller

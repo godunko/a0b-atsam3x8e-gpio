@@ -138,4 +138,9 @@ is
       Div  : A0B.Types.Unsigned_14);
    --  Configure Slow Clock Divider for Debouncing.
 
+private
+
+   procedure PIO_Handler (Self : in out ATSAM3X8E_PIO_Controller'Class);
+   --  PIO controller's interrupt handler.
+
 end A0B.ATSAM3X8E.PIO;
