@@ -21,23 +21,23 @@ package A0B.ATSAM3X8E.PIO
   with Preelaborate
 is
 
-   type SPI0_MISO_Pin is limited interface;
+   type SPI0_MISO_Line is limited interface;
 
    not overriding procedure Configure_SPI_MISO
-     (Self   : in out SPI0_MISO_Pin;
+     (Self   : in out SPI0_MISO_Line;
       Pullup : Boolean := False) is abstract;
 
-   type SPI0_MOSI_Pin is limited interface;
+   type SPI0_MOSI_Line is limited interface;
 
    not overriding procedure Configure_SPI_MOSI
-     (Self       : in out SPI0_MOSI_Pin;
+     (Self       : in out SPI0_MOSI_Line;
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False) is abstract;
 
-   type SPI0_SPCK_Pin is limited interface;
+   type SPI0_SPCK_Line is limited interface;
 
    not overriding procedure Configure_SPI_SPCK
-     (Self       : in out SPI0_SPCK_Pin;
+     (Self       : in out SPI0_SPCK_Line;
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False) is abstract;
 
@@ -51,7 +51,8 @@ is
      (Controller : not null access ATSAM3X8E_PIO_Controller;
       Line       : ATSAM3X8E_PIO_Line) is abstract tagged limited null record;
 
-   type ATSAM3X8E_EXTI_Pin is limited interface and A0B.EXTI.EXTI_Pin;
+   type ATSAM3X8E_EXTI_Pin is limited interface
+     and A0B.EXTI.External_Interrupt_Line;
 
    type EXTI_Mode is
      (Both_Edge, Rising_Edge, Falling_Edge, Low_Level, High_Level);
@@ -64,8 +65,8 @@ is
 
    type ATSAM3X8E_Pin is
      limited new ATSAM3X8E_Pin_Base
-       and A0B.GPIO.Input_Pin
-       and A0B.GPIO.Output_Pin
+       and A0B.GPIO.Input_Line
+       and A0B.GPIO.Output_Line
        and ATSAM3X8E_EXTI_Pin with
    record
       SO : aliased Ada.Synchronous_Task_Control.Suspension_Object;
@@ -104,20 +105,20 @@ is
    overriding procedure Set_Callback
      (Self : in out ATSAM3X8E_Pin; Callback : A0B.Callbacks.Callback);
 
-   type PA25_Pin is new ATSAM3X8E_Pin and SPI0_MISO_Pin with null record;
+   type PA25_Pin is new ATSAM3X8E_Pin and SPI0_MISO_Line with null record;
 
    overriding procedure Configure_SPI_MISO
      (Self   : in out PA25_Pin;
       Pullup : Boolean := False);
 
-   type PA26_Pin is new ATSAM3X8E_Pin and SPI0_MOSI_Pin with null record;
+   type PA26_Pin is new ATSAM3X8E_Pin and SPI0_MOSI_Line with null record;
 
    overriding procedure Configure_SPI_MOSI
      (Self       : in out PA26_Pin;
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False);
 
-   type PA27_Pin is new ATSAM3X8E_Pin and SPI0_SPCK_Pin with null record;
+   type PA27_Pin is new ATSAM3X8E_Pin and SPI0_SPCK_Line with null record;
 
    overriding procedure Configure_SPI_SPCK
      (Self       : in out PA27_Pin;
@@ -128,7 +129,7 @@ is
 
    type ATSAM3X8E_PIO_Controller
     (Peripheral : not null access A0B.SVD.ATSAM3X8E.PIO.PIO_Peripheral;
-     Identifier : ATSAM3X8E_Peripheral_Identifier) is
+     Identifier : Peripheral_Identifier) is
    tagged limited record
       Line : PIO_Pin_Array;
    end record;
