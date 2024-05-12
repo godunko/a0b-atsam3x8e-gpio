@@ -41,6 +41,54 @@ package body A0B.ATSAM3X8E.PIO is
       Filter : Input_Filter);
    --  Configure input filter.
 
+   procedure Configure_Alternative_Function_A
+     (Self : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask : A0B.Types.Unsigned_32);
+   --  Disable PIO control of the lines specified by the Mask and switch
+   --  control to alternative function A
+
+   procedure Configure_Alternative_Function_B
+     (Self : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask : A0B.Types.Unsigned_32);
+   --  Disable PIO control of the lines specified by the Mask and switch
+   --  control to alternative function B
+
+   --------------------------------------
+   -- Configure_Alternative_Function_A --
+   --------------------------------------
+
+   procedure Configure_Alternative_Function_A
+     (Self : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask : A0B.Types.Unsigned_32)
+   is
+      use type A0B.Types.Unsigned_32;
+
+   begin
+      Self.Peripheral.PDR.Val := Mask;
+      --  Disable PIO control of the pin
+
+      Self.Peripheral.ABSR.Val := @ and (not Mask);
+      --  Select Peripheral A (clear mask's bits)
+   end Configure_Alternative_Function_A;
+
+   --------------------------------------
+   -- Configure_Alternative_Function_B --
+   --------------------------------------
+
+   procedure Configure_Alternative_Function_B
+     (Self : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask : A0B.Types.Unsigned_32)
+   is
+      use type A0B.Types.Unsigned_32;
+
+   begin
+      Self.Peripheral.PDR.Val := Mask;
+      --  Disable PIO control of the pin
+
+      Self.Peripheral.ABSR.Val := @ or Mask;
+      --  Select Peripheral B (set mask's bits)
+   end Configure_Alternative_Function_B;
+
    ----------------------------------
    -- Configure_Debouncing_Divider --
    ----------------------------------
@@ -233,12 +281,7 @@ package body A0B.ATSAM3X8E.PIO is
         A0B.Types.Shift_Left (1, Integer (Self.Line));
 
    begin
-      Self.Controller.Peripheral.PDR.Val := Mask;
-      --  Disable PIO control of the pin
-
-      Self.Controller.Peripheral.ABSR.Arr (Integer (Self.Line)) := False;
-      --  Select Peripheral A
-
+      Self.Controller.Configure_Alternative_Function_A (Mask);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_SPI_MISO;
 
@@ -255,12 +298,7 @@ package body A0B.ATSAM3X8E.PIO is
         A0B.Types.Shift_Left (1, Integer (Self.Line));
 
    begin
-      Self.Controller.Peripheral.PDR.Val := Mask;
-      --  Disable PIO control of the pin
-
-      Self.Controller.Peripheral.ABSR.Arr (Integer (Self.Line)) := False;
-      --  Select Peripheral A
-
+      Self.Controller.Configure_Alternative_Function_A (Mask);
       Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_SPI_MOSI;
@@ -278,12 +316,7 @@ package body A0B.ATSAM3X8E.PIO is
         A0B.Types.Shift_Left (1, Integer (Self.Line));
 
    begin
-      Self.Controller.Peripheral.PDR.Val := Mask;
-      --  Disable PIO control of the pin
-
-      Self.Controller.Peripheral.ABSR.Arr (Integer (Self.Line)) := False;
-      --  Select Peripheral A
-
+      Self.Controller.Configure_Alternative_Function_A (Mask);
       Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_SPI_SPCK;
