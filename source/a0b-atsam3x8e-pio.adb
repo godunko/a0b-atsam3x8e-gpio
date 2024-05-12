@@ -160,6 +160,67 @@ package body A0B.ATSAM3X8E.PIO is
       end case;
    end Configure_Input_Filter;
 
+   --------------------------
+   -- Configure_Open_Drain --
+   --------------------------
+
+   procedure Configure_Open_Drain
+     (Self       : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask       : A0B.Types.Unsigned_32;
+      Open_Drain : Boolean) is
+   begin
+      case Open_Drain is
+         when False =>
+            Self.Peripheral.MDDR.Val := Mask;
+
+         when True =>
+            Self.Peripheral.MDER.Val := Mask;
+      end case;
+   end Configure_Open_Drain;
+
+   ----------------------
+   -- Configure_Output --
+   ----------------------
+
+   procedure Configure_Output
+     (Self       : in out ATSAM3X8E_Pin'Class;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False)
+   is
+      Mask : constant A0B.Types.Unsigned_32 :=
+        A0B.Types.Shift_Left (1, Integer (Self.Line));
+
+   begin
+      Self.Controller.Peripheral.PER.Val := Mask;
+      --  Enables the PIO to control the corresponding pin (disables
+      --  peripheral control of the pin)
+
+      Self.Controller.Peripheral.OER.Val := Mask;
+      --  Enables the output on the I/O line.
+
+      Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
+      Self.Controller.Configure_Pullup (Mask, Pullup);
+   end Configure_Output;
+
+   ----------------------
+   -- Configure_Pullup --
+   ----------------------
+
+   procedure Configure_Pullup
+     (Self   : in out ATSAM3X8E_PIO_Controller'Class;
+      Mask   : A0B.Types.Unsigned_32;
+      Pullup : Boolean) is
+   begin
+      if Pullup then
+         Self.Peripheral.PUER.Val := Mask;
+         --  pull-up enable
+
+      else
+         Self.Peripheral.PUDR.Val := Mask;
+         --  pull-up disable
+      end if;
+   end Configure_Pullup;
+
    ------------------------
    -- Configure_SPI_MISO --
    ------------------------
@@ -226,67 +287,6 @@ package body A0B.ATSAM3X8E.PIO is
       Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_SPI_SPCK;
-
-   --------------------------
-   -- Configure_Open_Drain --
-   --------------------------
-
-   procedure Configure_Open_Drain
-     (Self       : in out ATSAM3X8E_PIO_Controller'Class;
-      Mask       : A0B.Types.Unsigned_32;
-      Open_Drain : Boolean) is
-   begin
-      case Open_Drain is
-         when False =>
-            Self.Peripheral.MDDR.Val := Mask;
-
-         when True =>
-            Self.Peripheral.MDER.Val := Mask;
-      end case;
-   end Configure_Open_Drain;
-
-   ----------------------
-   -- Configure_Output --
-   ----------------------
-
-   procedure Configure_Output
-     (Self       : in out ATSAM3X8E_Pin'Class;
-      Open_Drain : Boolean := False;
-      Pullup     : Boolean := False)
-   is
-      Mask : constant A0B.Types.Unsigned_32 :=
-        A0B.Types.Shift_Left (1, Integer (Self.Line));
-
-   begin
-      Self.Controller.Peripheral.PER.Val := Mask;
-      --  Enables the PIO to control the corresponding pin (disables
-      --  peripheral control of the pin)
-
-      Self.Controller.Peripheral.OER.Val := Mask;
-      --  Enables the output on the I/O line.
-
-      Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
-      Self.Controller.Configure_Pullup (Mask, Pullup);
-   end Configure_Output;
-
-   ----------------------
-   -- Configure_Pullup --
-   ----------------------
-
-   procedure Configure_Pullup
-     (Self   : in out ATSAM3X8E_PIO_Controller'Class;
-      Mask   : A0B.Types.Unsigned_32;
-      Pullup : Boolean) is
-   begin
-      if Pullup then
-         Self.Peripheral.PUER.Val := Mask;
-         --  pull-up enable
-
-      else
-         Self.Peripheral.PUDR.Val := Mask;
-         --  pull-up disable
-      end if;
-   end Configure_Pullup;
 
    ------------------
    -- Disable_EXTI --
