@@ -33,21 +33,21 @@ is
      (Controller => PIOA'Access, Line => 8);
    PA9  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOA'Access, Line => 9);
-   PA10 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA10 : aliased A0B.ATSAM3X8E.PIO.PA10_Line
      (Controller => PIOA'Access, Line => 10);
-   PA11 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA11 : aliased A0B.ATSAM3X8E.PIO.PA11_Line
      (Controller => PIOA'Access, Line => 11);
-   PA12 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA12 : aliased A0B.ATSAM3X8E.PIO.PA12_Line
      (Controller => PIOA'Access, Line => 12);
-   PA13 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA13 : aliased A0B.ATSAM3X8E.PIO.PA13_Line
      (Controller => PIOA'Access, Line => 13);
-   PA14 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA14 : aliased A0B.ATSAM3X8E.PIO.PA14_Line
      (Controller => PIOA'Access, Line => 14);
-   PA15 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA15 : aliased A0B.ATSAM3X8E.PIO.PA15_Line
      (Controller => PIOA'Access, Line => 15);
-   PA16 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA16 : aliased A0B.ATSAM3X8E.PIO.PA16_Line
      (Controller => PIOA'Access, Line => 16);
-   PA17 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PA17 : aliased A0B.ATSAM3X8E.PIO.PA17_Line
      (Controller => PIOA'Access, Line => 17);
    PA18 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOA'Access, Line => 18);

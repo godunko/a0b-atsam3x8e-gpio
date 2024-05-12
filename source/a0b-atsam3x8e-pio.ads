@@ -41,6 +41,138 @@ is
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False) is abstract;
 
+   type RXD0_Line is limited interface;
+
+   not overriding procedure Configure_RXD0
+     (Self   : in out RXD0_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type RTS0_Line is limited interface;
+
+   not overriding procedure Configure_RTS0
+     (Self       : in out RTS0_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type TXD0_Line is limited interface;
+
+   not overriding procedure Configure_TXD0
+     (Self       : in out TXD0_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type CTS0_Line is limited interface;
+
+   not overriding procedure Configure_CTS0
+     (Self   : in out CTS0_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type SCK0_Line is limited interface;
+
+   not overriding procedure Configure_SCK0
+     (Self       : in out SCK0_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type RXD1_Line is limited interface;
+
+   not overriding procedure Configure_RXD1
+     (Self   : in out RXD1_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type RTS1_Line is limited interface;
+
+   not overriding procedure Configure_RTS1
+     (Self       : in out RTS1_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type TXD1_Line is limited interface;
+
+   not overriding procedure Configure_TXD1
+     (Self       : in out TXD1_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type CTS1_Line is limited interface;
+
+   not overriding procedure Configure_CTS1
+     (Self   : in out CTS1_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type SCK1_Line is limited interface;
+
+   not overriding procedure Configure_SCK1
+     (Self       : in out SCK1_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type RXD2_Line is limited interface;
+
+   not overriding procedure Configure_RXD2
+     (Self   : in out RXD2_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type RTS2_Line is limited interface;
+
+   not overriding procedure Configure_RTS2
+     (Self       : in out RTS2_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type TXD2_Line is limited interface;
+
+   not overriding procedure Configure_TXD2
+     (Self       : in out TXD2_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type CTS2_Line is limited interface;
+
+   not overriding procedure Configure_CTS2
+     (Self   : in out CTS2_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type SCK2_Line is limited interface;
+
+   not overriding procedure Configure_SCK2
+     (Self       : in out SCK2_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type RXD3_Line is limited interface;
+
+   not overriding procedure Configure_RXD3
+     (Self   : in out RXD3_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type RTS3_Line is limited interface;
+
+   not overriding procedure Configure_RTS3
+     (Self       : in out RTS3_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type TXD3_Line is limited interface;
+
+   not overriding procedure Configure_TXD3
+     (Self       : in out TXD3_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
+   type CTS3_Line is limited interface;
+
+   not overriding procedure Configure_CTS3
+     (Self   : in out CTS3_Line;
+      Pullup : Boolean := False) is abstract;
+
+   type SCK3_Line is limited interface;
+
+   not overriding procedure Configure_SCK3
+     (Self       : in out SCK3_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False) is abstract;
+
    type ATSAM3X8E_PIO_Controller is tagged;
 
    type Input_Filter is (None, Glitch, Debouncing);
@@ -105,6 +237,59 @@ is
    overriding procedure Set_Callback
      (Self : in out ATSAM3X8E_Pin; Callback : A0B.Callbacks.Callback);
 
+   type PA10_Line is new ATSAM3X8E_Pin and RXD0_Line with null record;
+
+   overriding procedure Configure_RXD0
+     (Self   : in out PA10_Line;
+      Pullup : Boolean := False);
+
+   type PA11_Line is new ATSAM3X8E_Pin and TXD0_Line with null record;
+
+   overriding procedure Configure_TXD0
+     (Self       : in out PA11_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PA12_Line is new ATSAM3X8E_Pin and RXD1_Line with null record;
+
+   overriding procedure Configure_RXD1
+     (Self   : in out PA12_Line;
+      Pullup : Boolean := False);
+
+   type PA13_Line is new ATSAM3X8E_Pin and TXD1_Line with null record;
+
+   overriding procedure Configure_TXD1
+     (Self       : in out PA13_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PA14_Line is new ATSAM3X8E_Pin and RTS1_Line with null record;
+
+   overriding procedure Configure_RTS1
+     (Self       : in out PA14_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PA15_Line is new ATSAM3X8E_Pin and CTS1_Line with null record;
+
+   overriding procedure Configure_CTS1
+     (Self   : in out PA15_Line;
+      Pullup : Boolean := False);
+
+   type PA16_Line is new ATSAM3X8E_Pin and SCK1_Line with null record;
+
+   overriding procedure Configure_SCK1
+     (Self       : in out PA16_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PA17_Line is new ATSAM3X8E_Pin and SCK0_Line with null record;
+
+   overriding procedure Configure_SCK0
+     (Self       : in out PA17_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
    type PA25_Pin is new ATSAM3X8E_Pin and SPI0_MISO_Line with null record;
 
    overriding procedure Configure_SPI_MISO
@@ -124,6 +309,65 @@ is
      (Self       : in out PA27_Pin;
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False);
+
+   type PB20_Line is new ATSAM3X8E_Pin and TXD2_Line with null record;
+
+   overriding procedure Configure_TXD2
+     (Self       : in out PB20_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PB21_Line is new ATSAM3X8E_Pin and RXD2_Line with null record;
+
+   overriding procedure Configure_RXD2
+     (Self   : in out PB21_Line;
+      Pullup : Boolean := False);
+
+   type PB22_Line is new ATSAM3X8E_Pin and RTS2_Line with null record;
+
+   overriding procedure Configure_RTS2
+     (Self       : in out PB22_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PB23_Line is new ATSAM3X8E_Pin and CTS2_Line with null record;
+
+   overriding procedure Configure_CTS2
+     (Self   : in out PB23_Line;
+      Pullup : Boolean := False);
+
+   type PB24_Line is new ATSAM3X8E_Pin and SCK2_Line with null record;
+
+   overriding procedure Configure_SCK2
+     (Self       : in out PB24_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PB25_Line is new ATSAM3X8E_Pin and RTS0_Line with null record;
+
+   overriding procedure Configure_RTS0
+     (Self       : in out PB25_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PB26_Line is new ATSAM3X8E_Pin and CTS0_Line with null record;
+
+   overriding procedure Configure_CTS0
+     (Self   : in out PB26_Line;
+      Pullup : Boolean := False);
+
+   type PD4_Line is new ATSAM3X8E_Pin and TXD3_Line with null record;
+
+   overriding procedure Configure_TXD3
+     (Self       : in out PD4_Line;
+      Open_Drain : Boolean := False;
+      Pullup     : Boolean := False);
+
+   type PD5_Line is new ATSAM3X8E_Pin and RXD3_Line with null record;
+
+   overriding procedure Configure_RXD3
+     (Self   : in out PD5_Line;
+      Pullup : Boolean := False);
 
    type PIO_Pin_Array is array (ATSAM3X8E_PIO_Line) of access ATSAM3X8E_Pin;
 

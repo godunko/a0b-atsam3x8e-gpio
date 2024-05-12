@@ -53,19 +53,19 @@ is
      (Controller => PIOB'Access, Line => 18);
    PB19 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOB'Access, Line => 19);
-   PB20 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB20 : aliased A0B.ATSAM3X8E.PIO.PB20_Line
      (Controller => PIOB'Access, Line => 20);
-   PB21 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB21 : aliased A0B.ATSAM3X8E.PIO.PB21_Line
      (Controller => PIOB'Access, Line => 21);
-   PB22 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB22 : aliased A0B.ATSAM3X8E.PIO.PB22_Line
      (Controller => PIOB'Access, Line => 22);
-   PB23 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB23 : aliased A0B.ATSAM3X8E.PIO.PB23_Line
      (Controller => PIOB'Access, Line => 23);
-   PB24 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB24 : aliased A0B.ATSAM3X8E.PIO.PB24_Line
      (Controller => PIOB'Access, Line => 24);
-   PB25 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB25 : aliased A0B.ATSAM3X8E.PIO.PB25_Line
      (Controller => PIOB'Access, Line => 25);
-   PB26 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
+   PB26 : aliased A0B.ATSAM3X8E.PIO.PB26_Line
      (Controller => PIOB'Access, Line => 26);
    PB27 : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOB'Access, Line => 27);
