@@ -11,7 +11,7 @@ package A0B.ATSAM3X8E.PIO.PIOC
 is
 
    PIOC : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_PIO_Controller
-     (A0B.SVD.ATSAM3X8E.PIO.PIOC_Periph'Access, Parallel_IO_Controller_C);
+     (C, A0B.SVD.ATSAM3X8E.PIO.PIOC_Periph'Access, Parallel_IO_Controller_C);
 
    PC0  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOC'Access, Line => 0);

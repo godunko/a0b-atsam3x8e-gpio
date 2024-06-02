@@ -21,6 +21,8 @@ package A0B.ATSAM3X8E.PIO
   with Preelaborate
 is
 
+   type Controller is (A, B, C, D);
+
    type SPI0_MISO_Line is limited interface;
 
    not overriding procedure Configure_SPI_MISO
@@ -177,7 +179,8 @@ is
 
    type Input_Filter is (None, Glitch, Debouncing);
 
-   type ATSAM3X8E_PIO_Line is range 0 .. 31;
+   type ATSAM3X8E_PIO_Line_Base is range 0 .. 32;
+   subtype ATSAM3X8E_PIO_Line is ATSAM3X8E_PIO_Line_Base range 0 .. 31;
 
    type ATSAM3X8E_Pin_Base
      (Controller : not null access ATSAM3X8E_PIO_Controller;
@@ -215,6 +218,12 @@ is
      (Self       : in out ATSAM3X8E_Pin'Class;
       Open_Drain : Boolean := False;
       Pullup     : Boolean := False);
+
+   procedure Configure_Alternative_Function
+     (Self   : in out ATSAM3X8E_Pin'Class;
+      Line   : Line_Function;
+      Pullup : Boolean := False);
+   --  with Supports (Self.Controller.Controller, Line); ???
 
    overriding procedure Configure_EXTI
      (Self   : aliased in out ATSAM3X8E_Pin;
@@ -372,8 +381,9 @@ is
    type PIO_Pin_Array is array (ATSAM3X8E_PIO_Line) of access ATSAM3X8E_Pin;
 
    type ATSAM3X8E_PIO_Controller
-    (Peripheral : not null access A0B.SVD.ATSAM3X8E.PIO.PIO_Peripheral;
-     Identifier : Peripheral_Identifier) is
+     (Controller : PIO.Controller;
+      Peripheral : not null access A0B.SVD.ATSAM3X8E.PIO.PIO_Peripheral;
+      Identifier : Peripheral_Identifier) is
    tagged limited record
       Line : PIO_Pin_Array;
    end record;

@@ -13,6 +13,8 @@ with A0B.SVD.ATSAM3X8E.PMC;         use A0B.SVD.ATSAM3X8E.PMC;
 with A0B.SVD.ATSAM3X8E.PIO;         use A0B.SVD.ATSAM3X8E.PIO;
 with A0B.Types.GCC_Builtins;        use A0B.Types.GCC_Builtins;
 
+with A0B.ATSAM3X8E.PIO.Configuration;
+
 package body A0B.ATSAM3X8E.PIO is
 
    procedure Enable_Clock (Self : in out ATSAM3X8E_PIO_Controller);
@@ -52,6 +54,37 @@ package body A0B.ATSAM3X8E.PIO is
       Mask : A0B.Types.Unsigned_32);
    --  Disable PIO control of the lines specified by the Mask and switch
    --  control to alternative function B
+
+   ------------------------------------
+   -- Configure_Alternative_Function --
+   ------------------------------------
+
+   procedure Configure_Alternative_Function
+     (Self   : in out ATSAM3X8E_Pin'Class;
+      Line   : Line_Function;
+      Pullup : Boolean := False)
+   is
+      Mask       : constant A0B.Types.Unsigned_32 :=
+        A0B.Types.Shift_Left (1, Integer (Self.Line));
+      Descriptor : constant Configuration.Line_Descriptor :=
+        Configuration.AF_Map (Line, Self.Controller.Controller);
+
+   begin
+      if Descriptor.Supported then
+         case Descriptor.Alternative_Function is
+            when Configuration.A =>
+               Configure_Alternative_Function_A (Self.Controller.all, Mask);
+
+            when Configuration.B =>
+               Configure_Alternative_Function_B (Self.Controller.all, Mask);
+         end case;
+
+         Self.Controller.Configure_Pullup (Mask, Pullup);
+
+      else
+         raise Program_Error;
+      end if;
+   end Configure_Alternative_Function;
 
    --------------------------------------
    -- Configure_Alternative_Function_A --
@@ -467,7 +500,7 @@ package body A0B.ATSAM3X8E.PIO is
 
    begin
       Self.Controller.Configure_Alternative_Function_A (Mask);
-      Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
+      --  Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_SCK1;
 
@@ -573,7 +606,7 @@ package body A0B.ATSAM3X8E.PIO is
 
    begin
       Self.Controller.Configure_Alternative_Function_A (Mask);
-      Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
+      --  Self.Controller.Configure_Open_Drain (Mask, Open_Drain);
       Self.Controller.Configure_Pullup (Mask, Pullup);
    end Configure_TXD1;
 
