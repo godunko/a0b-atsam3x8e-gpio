@@ -9,8 +9,8 @@ pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2022;
 
 with A0B.ARMv7M.NVIC_Utilities;     use A0B.ARMv7M.NVIC_Utilities;
-with A0B.SVD.ATSAM3X8E.PMC;         use A0B.SVD.ATSAM3X8E.PMC;
-with A0B.SVD.ATSAM3X8E.PIO;         use A0B.SVD.ATSAM3X8E.PIO;
+with A0B.ATSAM3X8E.SVD.PMC;         use A0B.ATSAM3X8E.SVD.PMC;
+with A0B.ATSAM3X8E.SVD.PIO;         use A0B.ATSAM3X8E.SVD.PIO;
 with A0B.Types.GCC_Builtins;        use A0B.Types.GCC_Builtins;
 
 with A0B.ATSAM3X8E.PIO.Configuration;

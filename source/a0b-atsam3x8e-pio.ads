@@ -15,7 +15,7 @@ with A0B.EXTI;
 with A0B.GPIO;
 with A0B.Types;
 
-with A0B.SVD.ATSAM3X8E.PIO;
+with A0B.ATSAM3X8E.SVD.PIO;
 
 package A0B.ATSAM3X8E.PIO
   with Preelaborate
@@ -382,7 +382,7 @@ is
 
    type ATSAM3X8E_PIO_Controller
      (Controller : PIO.Controller;
-      Peripheral : not null access A0B.SVD.ATSAM3X8E.PIO.PIO_Peripheral;
+      Peripheral : not null access A0B.ATSAM3X8E.SVD.PIO.PIO_Peripheral;
       Identifier : Peripheral_Identifier) is
    tagged limited record
       Line : PIO_Pin_Array;

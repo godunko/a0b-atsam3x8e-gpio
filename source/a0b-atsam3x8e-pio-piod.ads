@@ -11,7 +11,9 @@ package A0B.ATSAM3X8E.PIO.PIOD
 is
 
    PIOD : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_PIO_Controller
-     (A0B.SVD.ATSAM3X8E.PIO.PIOD_Periph'Access, Parallel_IO_Controller_D);
+     (Controller => D,
+      Peripheral => A0B.ATSAM3X8E.SVD.PIO.PIOD_Periph'Access,
+      Identifier => Parallel_IO_Controller_D);
 
    PD0  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOD'Access, Line => 0);
