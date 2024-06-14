@@ -4,12 +4,9 @@
 --  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 --
 
-with "a0b_common";
+with "../config/a0b_atsam3x8e_gpio_config";
 
-with "a0b_callbacks";
-with "a0b_gpio";
-with "a0b_exti";
-with "a0b_svd_atsam3x8e";
+with "a0b_common";
 
 project A0B_ATSAM3X8E_GPIO is
 

@@ -11,7 +11,9 @@ tags = ["embedded", "atsam3x8e", "gpio", "arduino", "due"]
 project-files = ["gnat/a0b_atsam3x8e_gpio.gpr"]
 
 [configuration]
-disabled = true
+generate_ada = false
+generate_c = false
+generate_gpr = true
 
 [[depends-on]]
 a0b_gpio = "*"
