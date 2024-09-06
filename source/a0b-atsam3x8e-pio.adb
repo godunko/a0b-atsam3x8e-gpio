@@ -772,8 +772,6 @@ package body A0B.ATSAM3X8E.PIO is
          Mask   := A0B.Types.Shift_Left (1, Line);
          Status := @ and (not Mask);
 
-         Ada.Synchronous_Task_Control.Set_True
-           (Self.Line (ATSAM3X8E_PIO_Line (Line)).SO);
          A0B.Callbacks.Emit (Self.Line (ATSAM3X8E_PIO_Line (Line)).CB);
       end loop;
    end PIO_Handler;
@@ -805,16 +803,5 @@ package body A0B.ATSAM3X8E.PIO is
    begin
       Self.CB := Callback;
    end Set_Callback;
-
-   -----------------------
-   -- Suspension_Object --
-   -----------------------
-
-   overriding function Suspension_Object
-     (Self : aliased in out ATSAM3X8E_Pin)
-      return not null access Ada.Synchronous_Task_Control.Suspension_Object is
-   begin
-      return Self.SO'Access;
-   end Suspension_Object;
 
 end A0B.ATSAM3X8E.PIO;

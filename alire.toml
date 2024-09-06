@@ -18,4 +18,5 @@ generate_gpr = true
 [[depends-on]]
 a0b_gpio = "*"
 a0b_exti = "*"
+a0b_armv7m = "*"
 a0b_atsam3x8e = "*"

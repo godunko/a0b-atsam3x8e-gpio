@@ -8,8 +8,6 @@ pragma Restrictions (No_Elaboration_Code);
 
 pragma Ada_2022;
 
-with Ada.Synchronous_Task_Control;
-
 with A0B.Callbacks;
 with A0B.EXTI;
 with A0B.GPIO;
@@ -204,7 +202,6 @@ is
        and A0B.GPIO.Output_Line
        and ATSAM3X8E_EXTI_Pin with
    record
-      SO : aliased Ada.Synchronous_Task_Control.Suspension_Object;
       CB : A0B.Callbacks.Callback;
    end record
      with Preelaborable_Initialization;
@@ -234,10 +231,6 @@ is
    overriding procedure Enable_Interrupt (Self : in out ATSAM3X8E_Pin);
 
    overriding procedure Disable_Interrupt (Self : in out ATSAM3X8E_Pin);
-
-   overriding function Suspension_Object
-     (Self : aliased in out ATSAM3X8E_Pin)
-      return not null access Ada.Synchronous_Task_Control.Suspension_Object;
 
    overriding function Get (Self : ATSAM3X8E_Pin) return Boolean;
 
