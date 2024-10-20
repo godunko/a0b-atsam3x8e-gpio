@@ -23,9 +23,9 @@ is
      (Controller => PIOD'Access, Line => 2);
    PD3  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOD'Access, Line => 3);
-   PD4  : aliased A0B.ATSAM3X8E.PIO.PD4_Line
+   PD4  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOD'Access, Line => 4);
-   PD5  : aliased A0B.ATSAM3X8E.PIO.PD5_Line
+   PD5  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOD'Access, Line => 5);
    PD6  : aliased A0B.ATSAM3X8E.PIO.ATSAM3X8E_Pin
      (Controller => PIOD'Access, Line => 6);
