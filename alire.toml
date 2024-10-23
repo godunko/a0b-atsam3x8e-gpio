@@ -19,3 +19,8 @@ generate_gpr = true
 a0b_gpio = "*"
 a0b_exti = "*"
 a0b_atsam3x8e = "*"
+
+[[actions]]
+type = "test"
+directory = "selftest"
+command = ["alr", "build"]
